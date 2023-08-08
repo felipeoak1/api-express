@@ -5,8 +5,9 @@ const ContactController = require('./app/controllers/contactController')
 const router = Router()
 
 
-router.get('/contacts/:id', ContactController.show)
 router.get('/contacts', ContactController.index)
+router.get('/contacts/:id', ContactController.show)
+router.delete('/contacts/:id', ContactController.delete)
 
 
 
