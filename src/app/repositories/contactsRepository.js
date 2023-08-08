@@ -26,7 +26,7 @@ class contactsRepository {
 
     findByEmail(email){
         return new Promise((resolve)=>{
-            contacts.find((contact)=>{return contact.email == email})
+            resolve(contacts.find((contact)=>{return contact.email == email})) 
         })
     }
 
@@ -36,9 +36,10 @@ class contactsRepository {
         })
     }
 
-    createById({name, email, phone, category_id}){
+    create({name, email, phone, category_id}){
         return new Promise((resolve) => {
             const newContact = {id:v4, name, email, phone, category_id}
+
             contacts.push(newContact)
             resolve(contacts)
         })
