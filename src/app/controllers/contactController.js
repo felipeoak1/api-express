@@ -22,8 +22,19 @@ class ContactController {
 
     }
 
-    store() {
+    async store(request, response) {
         // CRIAR UM NOVO REGISTRO
+        const { name, email, phone, category_id } = request.body
+
+        const contactExists = await ContactsRepository.findByEmail(email)
+
+        if (contactExists){
+            return response.status(400).json({error: 'This e-mail is already been taken. '})
+        }
+
+        const contact = await ContactsRepository.create({name, email, phone, category_id})
+        response.json(contact)
+
     }
 
     update(){
