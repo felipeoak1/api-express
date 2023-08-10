@@ -1,3 +1,5 @@
+require('express-async-errors')
+
 const express = require('express')
 
 const routes = require('./routes.js')
@@ -9,6 +11,7 @@ app.use(express.json())
 app.use(routes) // Middleware
 
 app.use((error, request, response, next)=>{ // Middleware - Error Handler
+    console.log('Error Handler')
     console.log(error)
     response.sendStatus(500)
 })
